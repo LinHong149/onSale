@@ -15,13 +15,26 @@ services:
       dockerfile: Dockerfiles/Dockerfile.backend
     ports: 
      - "8000:8000"
-    # depends_on:
-    #   - db
+    depends_on:
+      - minio
     # envionment:
     #  - DATA ASE_URL = postgresql://postgres:postgres@db:5432/onsale
     #  - S3_BUCKET=onsale-flyers
     #  - AWS_ACCESS_KEY_ID=local
     #  - AWS_SECRET_ACCESS_KEY=local
+
+  minio:
+    image: minio/minio
+    container_name: onsale-minio
+    ports:
+      - "9000:9000"       # S3 API
+      - "9001:9001"       # Web UI
+    environment:
+      MINIO_ROOT_USER: local
+      MINIO_ROOT_PASSWORD: local1234
+    volumes:
+      - s3_data:/data
+    command: server /data --console-address ":9001"
 
   # db:
   #   image: postgres:15

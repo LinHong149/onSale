@@ -6,3 +6,5 @@ pdf2image
 pillow
 python-multipart
 python-dotenv
+Flask
+requests
