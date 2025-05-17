@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+boto3
+pytesseract
+pdf2image
+pillow
+python-multipart
+python-dotenv

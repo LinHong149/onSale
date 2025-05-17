@@ -1,0 +1,38 @@
+version: "3.11"
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.frontend
+    ports: 
+     - "3000:3000"
+    # environment:
+    #  - NEXT_PUBLIC_API_URL=HTTP://LOCALHOST:8000
+
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.backend
+    ports: 
+     - "8000:8000"
+    # depends_on:
+    #   - db
+    # envionment:
+    #  - DATA ASE_URL = postgresql://postgres:postgres@db:5432/onsale
+    #  - S3_BUCKET=onsale-flyers
+    #  - AWS_ACCESS_KEY_ID=local
+    #  - AWS_SECRET_ACCESS_KEY=local
+
+  # db:
+  #   image: postgres:15
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: onsale
+  #   volumes:
+  #     - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+  s3_data:
